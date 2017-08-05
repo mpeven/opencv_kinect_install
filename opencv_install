@@ -1,7 +1,6 @@
 # Install requirements
 sudo add-apt-repository ppa:jonathonf/python-3.6
 sudo apt update
-sudo apt-get install
 sudo apt install -y python3.6-dev libjpeg8-dev libtiff5-dev libjasper-dev \
     libpng12-dev libhdf5-dev libavcodec-dev libavformat-dev libswscale-dev \
     libv4l-dev libxvidcore-dev libx264-dev libgtk-3-dev libatlas-base-dev \

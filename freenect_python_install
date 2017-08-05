@@ -1,0 +1,44 @@
+# Install requirements
+sudo apt update
+sudo apt upgrade
+sudo apt install -y git-core cmake freeglut3-dev pkg-config \
+    build-essential libxmu-dev libxi-dev libusb-1.0-0-dev
+
+
+# Add file to kinect rules
+sudo cp 51-kinect.rules /etc/udev/rules.d/
+sudo cp 51-kinect.rules /etc/udev/rules.d/66-kinect.rules
+sudo /etc/init.d/udev restart
+
+
+# Use kinect as non-root
+sudo adduser $USER video
+sudo adduser $USER plugdev
+
+
+# Move to virtual environment
+mkvirtualenv opencv_install -p python3.6
+workon opencv_install
+pip install --upgrade pip setuptools wheel cython numpy
+
+
+# Fetch and Build
+cd /opt/src
+git clone https://github.com/OpenKinect/libfreenect
+cd libfreenect
+mkdir build
+cd build
+cmake \
+    -D CMAKE_INSTALL_PREFIX=/opt/freenect_py36 \
+    -D BUILD_PYTHON3=ON \
+    ..
+make -j8
+cd /opt/src/libfreenect/build
+sudo make install
+
+
+# Save module into virtualenv
+cp /opt/freenect_py36/lib/python3.6/site-packages/freenect.so ~.virtualenvs/opencv_install/lib/python3.6/site-packages/
+
+echo "run 'freenect-glview' to test freenect"
+echo "try importing freenect in python interpreter to test module"
