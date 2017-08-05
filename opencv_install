@@ -48,6 +48,7 @@ cmake \
     -D WITH_IPP=OFF \
     -D WITH_TBB=ON \
     -D WITH_EIGEN=ON \
+    -D WITH_LIBV4L=ON \
     -D WITH_V4L=ON \
     -D WITH_VTK=OFF \
     -D BUILD_TESTS=OFF \
