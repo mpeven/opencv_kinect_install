@@ -38,7 +38,7 @@ sudo make install
 
 
 # Save module into virtualenv
-cp /opt/freenect_py36/lib/python3.6/site-packages/freenect.so ~.virtualenvs/opencv_install/lib/python3.6/site-packages/
+cp /opt/freenect_py36/lib/python3.6/site-packages/freenect.so ~/.virtualenvs/opencv_install/lib/python3.6/site-packages/
 
 echo "run 'freenect-glview' to test freenect"
 echo "try importing freenect in python interpreter to test module"
